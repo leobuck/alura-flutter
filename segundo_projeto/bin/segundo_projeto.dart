@@ -6,7 +6,9 @@ void main() {
   int diasDesdeColheita = 20;
   bool isMadura = funcEstaMadura(diasDesdeColheita);
 
-  mostrarMadura("Uva", 40, cor: "Roxa");
+  // mostrarMadura("Uva", 40, cor: "Roxa");
+  int quantosDias = funcQuantosDiasMadura(diasDesdeColheita);
+  print(quantosDias);
 }
 
 // Função void
@@ -36,4 +38,10 @@ bool funcEstaMadura(int dias) {
   } else {
     return false;
   }
+}
+
+funcQuantosDiasMadura(int dias) {
+  int diasParaMadura = 30;
+  int quantosDiasFaltam = diasParaMadura - dias;
+  return quantosDiasFaltam;
 }
