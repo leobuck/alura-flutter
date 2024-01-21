@@ -10,20 +10,21 @@ class Highlights extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(16.0),
-      child: Column(
-        children: [
-          Text("Destaques"),
-          SizedBox(
-            height: MediaQuery.of(context).size.height,
-            child: ListView.builder(
-              itemBuilder: (context, index) {
+      child: CustomScrollView(
+        slivers: <Widget>[
+          SliverToBoxAdapter(
+            child: Text("Destaques"),
+          ),
+          SliverList(
+            delegate: SliverChildBuilderDelegate(
+              (context, index) {
                 return HighlightItem(
                     imageURI: items[index]["image"],
                     itemTitle: items[index]["name"],
                     itemPrice: items[index]["price"],
                     itemDescription: items[index]["description"]);
               },
-              itemCount: items.length,
+              childCount: items.length,
             ),
           ),
         ],
