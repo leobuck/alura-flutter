@@ -30,10 +30,16 @@ class DrinkMenu extends StatelessWidget {
                   itemPrice: items[index]['price']);
             }, childCount: items.length),
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 2,
+              crossAxisCount:
+                  MediaQuery.of(context).orientation == Orientation.landscape
+                      ? 3
+                      : 2,
               crossAxisSpacing: 8,
               mainAxisSpacing: 8,
-              childAspectRatio: 158 / 194,
+              childAspectRatio:
+                  MediaQuery.of(context).orientation == Orientation.landscape
+                      ? 1.2
+                      : 158 / 194,
             ),
           ),
         ],
