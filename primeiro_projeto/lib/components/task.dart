@@ -15,7 +15,6 @@ class Task extends StatefulWidget {
 }
 
 class _TaskState extends State<Task> {
-
   bool assetOrNetwork() {
     if (widget.foto.contains('http')) {
       return false;
@@ -85,8 +84,8 @@ class _TaskState extends State<Task> {
                       ],
                     ),
                     SizedBox(
-                      height: 52,
-                      width: 52,
+                      height: 58,
+                      width: 58,
                       child: ElevatedButton(
                           onPressed: () {
                             setState(() {
