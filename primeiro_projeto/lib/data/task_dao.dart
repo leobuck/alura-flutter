@@ -1,4 +1,6 @@
 import 'package:primeiro_projeto/components/task.dart';
+import 'package:primeiro_projeto/data/database.dart';
+import 'package:sqflite/sqflite.dart';
 
 class TaskDao {
   static const String tableSql =
@@ -12,6 +14,11 @@ class TaskDao {
   save(Task tarefa) async {}
 
   Future<List<Task>> findAll() async {
+    print('findAll');
+    final Database bancoDeDados = await getDatabase();
+    final List<Map<String, dynamic>> result =
+        await bancoDeDados.query(_tableName);
+    print('procurando dados no banco de dados... encontrado: $result');
     throw Exception();
   }
 
