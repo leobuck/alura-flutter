@@ -19,7 +19,22 @@ class TaskDao {
     final List<Map<String, dynamic>> result =
         await bancoDeDados.query(_tableName);
     print('procurando dados no banco de dados... encontrado: $result');
-    throw Exception();
+    return toList(result);
+  }
+
+  List<Task> toList(List<Map<String, dynamic>> mapaDeTarefas) {
+    print('toList');
+    final List<Task> tarefas = [];
+    for (Map<String, dynamic> linha in mapaDeTarefas) {
+      final Task tarefa = Task(
+        linha[_name],
+        linha[_image],
+        linha[_difficulty],
+      );
+      tarefas.add(tarefa);
+    }
+    print('Lista de tarefas: $tarefas');
+    return tarefas;
   }
 
   Future<List<Task>> find(String nomeDaTarefa) async {
