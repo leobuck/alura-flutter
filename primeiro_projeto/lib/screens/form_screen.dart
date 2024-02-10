@@ -150,6 +150,7 @@ class _FormScreenState extends State<FormScreen> {
                             nameController.text,
                             imageController.text,
                             int.parse(difficultyController.text),
+                            0,
                           ),
                         );
 

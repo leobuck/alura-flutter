@@ -6,10 +6,9 @@ class Task extends StatefulWidget {
   final String nome;
   final String foto;
   final int dificuldade;
+  int nivel;
 
-  Task(this.nome, this.foto, this.dificuldade, {super.key});
-
-  int nivel = 0;
+  Task(this.nome, this.foto, this.dificuldade, this.nivel, {super.key});
 
   @override
   State<Task> createState() => _TaskState();
@@ -76,7 +75,9 @@ class _TaskState extends State<Task> {
                           child: Text(
                             widget.nome,
                             style: const TextStyle(
-                                fontSize: 24, overflow: TextOverflow.ellipsis),
+                              fontSize: 24,
+                              overflow: TextOverflow.ellipsis,
+                            ),
                           ),
                         ),
                         Difficulty(
@@ -89,12 +90,42 @@ class _TaskState extends State<Task> {
                       width: 58,
                       child: ElevatedButton(
                         onLongPress: () {
-                          TaskDao().delete(widget.nome);
+                          showDialog(
+                            context: context,
+                            builder: (context) {
+                              return AlertDialog(
+                                title: const Row(
+                                  children: [
+                                    Text('Deletar'),
+                                    Icon(Icons.delete_forever_rounded),
+                                  ],
+                                ),
+                                content: const Text(
+                                  'Tem certeza de que deseja deletar essa tarefa?',
+                                ),
+                                actions: [
+                                  TextButton(
+                                    onPressed: () {
+                                      Navigator.pop(context);
+                                    },
+                                    child: const Text('Não'),
+                                  ),
+                                  TextButton(
+                                    onPressed: () async {
+                                      await TaskDao().delete(widget.nome);
+                                      Navigator.pop(context);
+                                    },
+                                    child: const Text('Sim'),
+                                  ),
+                                ],
+                              );
+                            },
+                          );
                         },
-                        onPressed: () {
-                          setState(() {
-                            widget.nivel++;
-                          });
+                        onPressed: () async {
+                          widget.nivel++;
+                          await TaskDao().save(widget);
+                          setState(() {});
                         },
                         child: const Column(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
