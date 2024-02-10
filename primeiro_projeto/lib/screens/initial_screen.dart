@@ -92,7 +92,7 @@ class _InitialScreenState extends State<InitialScreen> {
                 taskContext: context,
               ),
             ),
-          );
+          ).then((value) => setState(() {}));
         },
         child: const Icon(Icons.add),
       ),
