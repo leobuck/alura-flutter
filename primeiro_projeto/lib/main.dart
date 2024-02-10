@@ -15,6 +15,20 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       theme: ThemeData(
         primarySwatch: Colors.blue,
+        appBarTheme: const AppBarTheme(
+          backgroundColor: Colors.blue,
+          foregroundColor: Colors.white,
+        ),
+        floatingActionButtonTheme: const FloatingActionButtonThemeData(
+          backgroundColor: Colors.blue,
+          foregroundColor: Colors.white,
+        ),
+        elevatedButtonTheme: ElevatedButtonThemeData(
+          style: ButtonStyle(
+            backgroundColor: MaterialStateProperty.all(Colors.blue),
+            foregroundColor: MaterialStateProperty.all(Colors.white),
+          ),
+        ),
       ),
       home: TaskInherited(
         child: const InitialScreen(),

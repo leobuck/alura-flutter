@@ -88,25 +88,26 @@ class _TaskState extends State<Task> {
                       height: 58,
                       width: 58,
                       child: ElevatedButton(
-                          onLongPress: () {
-                            TaskDao().delete(widget.nome);
-                          },
-                          onPressed: () {
-                            setState(() {
-                              widget.nivel++;
-                            });
-                          },
-                          child: const Column(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            crossAxisAlignment: CrossAxisAlignment.end,
-                            children: [
-                              Icon(Icons.arrow_drop_up),
-                              Text(
-                                'UP',
-                                style: TextStyle(fontSize: 12),
-                              )
-                            ],
-                          )),
+                        onLongPress: () {
+                          TaskDao().delete(widget.nome);
+                        },
+                        onPressed: () {
+                          setState(() {
+                            widget.nivel++;
+                          });
+                        },
+                        child: const Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          crossAxisAlignment: CrossAxisAlignment.end,
+                          children: [
+                            Icon(Icons.arrow_drop_up),
+                            Text(
+                              'UP',
+                              style: TextStyle(fontSize: 12),
+                            )
+                          ],
+                        ),
+                      ),
                     )
                   ],
                 ),
