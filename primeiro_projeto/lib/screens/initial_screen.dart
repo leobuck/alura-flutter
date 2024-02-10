@@ -26,14 +26,32 @@ class _InitialScreenState extends State<InitialScreen> {
             List<Task>? tarefas = snapshot.data;
             switch (snapshot.connectionState) {
               case ConnectionState.none:
-                // TODO: Handle this case.
-                break;
+                return const Center(
+                  child: Column(
+                    children: [
+                      CircularProgressIndicator(),
+                      Text('Carregando...'),
+                    ],
+                  ),
+                );
               case ConnectionState.waiting:
-                // TODO: Handle this case.
-                break;
+                return const Center(
+                  child: Column(
+                    children: [
+                      CircularProgressIndicator(),
+                      Text('Carregando...'),
+                    ],
+                  ),
+                );
               case ConnectionState.active:
-                // TODO: Handle this case.
-                break;
+                return const Center(
+                  child: Column(
+                    children: [
+                      CircularProgressIndicator(),
+                      Text('Carregando...'),
+                    ],
+                  ),
+                );
               case ConnectionState.done:
                 if (snapshot.hasData && tarefas != null) {
                   if (tarefas.isNotEmpty) {
@@ -45,8 +63,22 @@ class _InitialScreenState extends State<InitialScreen> {
                       },
                     );
                   }
+                  return const Center(
+                    child: Column(
+                      children: [
+                        Icon(
+                          Icons.error_outline,
+                          size: 128,
+                        ),
+                        Text(
+                          'Não há nenhuma tarefa',
+                          style: TextStyle(fontSize: 32),
+                        ),
+                      ],
+                    ),
+                  );
                 }
-                break;
+                return const Text('Erro ao carregar tarefas');
             }
           },
         ),
