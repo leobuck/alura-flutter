@@ -24,13 +24,30 @@ class _InitialScreenState extends State<InitialScreen> {
           future: TaskDao().findAll(),
           builder: (context, snapshot) {
             List<Task>? tarefas = snapshot.data;
-            return ListView.builder(
-              itemCount: tarefas?.length ?? 0,
-              itemBuilder: (context, index) {
-                final Task? tarefa = tarefas?[index];
-                return tarefa;
-              },
-            );
+            switch (snapshot.connectionState) {
+              case ConnectionState.none:
+                // TODO: Handle this case.
+                break;
+              case ConnectionState.waiting:
+                // TODO: Handle this case.
+                break;
+              case ConnectionState.active:
+                // TODO: Handle this case.
+                break;
+              case ConnectionState.done:
+                if (snapshot.hasData && tarefas != null) {
+                  if (tarefas.isNotEmpty) {
+                    return ListView.builder(
+                      itemCount: tarefas.length,
+                      itemBuilder: (context, index) {
+                        final Task tarefa = tarefas[index];
+                        return tarefa;
+                      },
+                    );
+                  }
+                }
+                break;
+            }
           },
         ),
       ),
