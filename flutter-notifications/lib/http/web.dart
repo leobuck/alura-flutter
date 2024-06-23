@@ -25,7 +25,7 @@ void sendDevice(Device device) async {
     body: jsonEncode(
       <String, String>{
         'token': device.token ?? '',
-        'model': device.model ?? '',
+        'modelo': device.model ?? '',
         'marca': device.brand ?? '',
       },
     ),
