@@ -9,17 +9,10 @@ import 'package:meetups/screens/events_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-@pragma('vm:entry-point')
-Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
-  await Firebase.initializeApp();
-  print("Handling a background message: ${message.toString()}");
-}
-
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   FirebaseMessaging messaging = FirebaseMessaging.instance;
-  FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
 
   NotificationSettings settings = await messaging.requestPermission(
     alert: true,
@@ -58,6 +51,12 @@ void _startPushNotificationsHandler(FirebaseMessaging messaging) async {
           'A mensagem também continha uma notificação: ${message.notification?.title}, ${message.notification?.body}');
     }
   });
+
+  FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
+}
+
+Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
+  print("Mensagem recebida em background: ${message.notification?.title}, ${message.notification?.body}");
 }
 
 void _setPushToken(String? token) async {
