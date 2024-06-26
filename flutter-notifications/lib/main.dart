@@ -9,18 +9,49 @@ import 'package:meetups/screens/events_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+@pragma('vm:entry-point')
+Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
+  await Firebase.initializeApp();
+  print("Handling a background message: ${message.toString()}");
+}
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   FirebaseMessaging messaging = FirebaseMessaging.instance;
+  FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
 
-  String? token = await messaging.getToken();
-  print('TOKEN: $token');
-  setPushToken(token);
+  NotificationSettings settings = await messaging.requestPermission(
+    alert: true,
+    announcement: false,
+    badge: true,
+    carPlay: false,
+    criticalAlert: false,
+    provisional: false,
+    sound: true,
+  );
+
+  if (settings.authorizationStatus == AuthorizationStatus.authorized) {
+    print('Permissão concedida pelo usuário: ${settings.authorizationStatus}');
+    _startPushNotificationsHandler(messaging);
+  } else if (settings.authorizationStatus == AuthorizationStatus.provisional) {
+    print(
+        'Permissão concedida provisoriamente pelo usuário: ${settings.authorizationStatus}');
+    _startPushNotificationsHandler(messaging);
+  } else {
+    print('Permissão negada pelo usuário');
+  }
+
   runApp(App());
 }
 
-void setPushToken(String? token) async {
+void _startPushNotificationsHandler(FirebaseMessaging messaging) async {
+  String? token = await messaging.getToken();
+  print('TOKEN: $token');
+  _setPushToken(token);
+}
+
+void _setPushToken(String? token) async {
   SharedPreferences prefs = await SharedPreferences.getInstance();
   String? prefsToken = prefs.getString('pushToken');
   bool? prefSent = prefs.getBool('tokenSent');
