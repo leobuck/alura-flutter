@@ -9,6 +9,8 @@ import 'package:meetups/screens/events_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+final navigatorKey = GlobalKey<NavigatorState>();
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
@@ -54,7 +56,30 @@ void _startPushNotificationsHandler(FirebaseMessaging messaging) async {
 
   FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
 
-  var data = await FirebaseMessaging.instance.getInitialMessage();
+  var notification = await FirebaseMessaging.instance.getInitialMessage();
+  if (notification != null && notification.data['message'].length > 0) {
+    showMyDialog(notification.data['message']);
+  }
+}
+
+void showMyDialog(String message) {
+  Widget okButton = OutlinedButton(
+    onPressed: () => Navigator.pop(navigatorKey.currentContext!),
+    child: Text('OK!'),
+  );
+  AlertDialog alerta = AlertDialog(
+    title: Text('Promoção Imperdível'),
+    content: Text(message),
+    actions: [
+      okButton,
+    ],
+  );
+  showDialog(
+    context: navigatorKey.currentContext!,
+    builder: (BuildContext context) {
+      return alerta;
+    },
+  );
 }
 
 Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
@@ -103,6 +128,7 @@ class App extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Dev meetups',
       home: EventsScreen(),
+      navigatorKey: navigatorKey,
     );
   }
 }
