@@ -53,10 +53,13 @@ void _startPushNotificationsHandler(FirebaseMessaging messaging) async {
   });
 
   FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
+
+  var data = await FirebaseMessaging.instance.getInitialMessage();
 }
 
 Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
-  print("Mensagem recebida em background: ${message.notification?.title}, ${message.notification?.body}");
+  print(
+      "Mensagem recebida em background: ${message.notification?.title}, ${message.notification?.body}");
 }
 
 void _setPushToken(String? token) async {
