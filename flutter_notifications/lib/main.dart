@@ -13,7 +13,17 @@ final navigatorKey = GlobalKey<NavigatorState>();
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
+  await Firebase.initializeApp(
+    options: FirebaseOptions(
+      apiKey: "AIzaSyCQUdBe3OGQ5jjcKpIJ51BAP0OWu5U5sTQ",
+      appId: "1:694386983691:web:139196b60165894331580e",
+      messagingSenderId: "694386983691",
+      projectId: "dev-meetups-47f24",
+      authDomain: "dev-meetups-47f24.firebaseapp.com",
+      storageBucket: "dev-meetups-47f24.appspot.com",
+      measurementId: "G-426WWWEHH3",
+    ),
+  );
   FirebaseMessaging messaging = FirebaseMessaging.instance;
 
   NotificationSettings settings = await messaging.requestPermission(
@@ -41,7 +51,10 @@ void main() async {
 }
 
 void _startPushNotificationsHandler(FirebaseMessaging messaging) async {
-  String? token = await messaging.getToken();
+  String? token = await messaging.getToken(
+    vapidKey:
+        'BNhKEnoALuIpWPHHiBbjO8OPOW0rtBBOAsZZ13ubQ-Uw4_C2SkfnwyZqv-Qukk_Uufmp2W7wCIMem2vA6Qo6y-4',
+  );
   print('TOKEN: $token');
   _setPushToken(token);
 

@@ -2,15 +2,13 @@ importScripts("https://www.gstatic.com/firebasejs/9.10.0/firebase-app-compat.js"
 importScripts("https://www.gstatic.com/firebasejs/9.10.0/firebase-messaging-compat.js");
 
 firebase.initializeApp({
-  apiKey: 'AIzaSyB7wZb2tO1-Fs6GbDADUSTs2Qs3w08Hovw',
-  appId: '1:406099696497:web:87e25e51afe982cd3574d0',
-  messagingSenderId: '406099696497',
-  projectId: 'flutterfire-e2e-tests',
-  authDomain: 'flutterfire-e2e-tests.firebaseapp.com',
-  databaseURL:
-      'https://flutterfire-e2e-tests-default-rtdb.europe-west1.firebasedatabase.app',
-  storageBucket: 'flutterfire-e2e-tests.appspot.com',
-  measurementId: 'G-JN95N1JV2E',
+    apiKey: "AIzaSyCQUdBe3OGQ5jjcKpIJ51BAP0OWu5U5sTQ",
+    appId: "1:694386983691:web:139196b60165894331580e",
+    messagingSenderId: "694386983691",
+    projectId: "dev-meetups-47f24",
+    authDomain: "dev-meetups-47f24.firebaseapp.com",
+    storageBucket: "dev-meetups-47f24.appspot.com",
+    measurementId: "G-426WWWEHH3"
 });
 // Necessary to receive background messages:
 const messaging = firebase.messaging();
