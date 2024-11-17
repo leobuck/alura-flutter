@@ -39,3 +39,6 @@ Gostou do projeto e quer conhecer mais? Você pode [acessar o curso](https://cur
 Esse curso faz parte da [formação de Flutter da Alura](https://cursos.alura.com.br/formacao-flutter)
 
 *Te vejo lá!*
+
+## jsonserver
+`json-server --watch --host 192.168.0.50 db.json`
