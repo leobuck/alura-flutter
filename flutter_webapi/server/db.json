@@ -1,62 +1,17 @@
 {
-  "learnhttp": [
-    {
-      "id": "4694",
-      "content": "Olá mundo!"
-    },
-    {
-      "id": "832c",
-      "content": "Olá mundo!"
-    },
-    {
-      "id": "fe9a",
-      "content": "Olá mundo!"
-    },
-    {
-      "id": "6224",
-      "content": "Olá mundo!"
-    },
-    {
-      "id": "a195",
-      "content": "Olá mundo!"
-    },
-    {
-      "id": "a9ef",
-      "content": "Olá mundo!"
-    },
-    {
-      "id": "7c31",
-      "content": "Olá mundo!"
-    },
-    {
-      "id": "5a79",
-      "content": "Olá mundo!"
-    },
-    {
-      "id": "e064",
-      "content": "Olá mundo!"
-    },
-    {
-      "id": "6b2c",
-      "content": "Olá mundo!"
-    },
-    {
-      "id": "487e",
-      "content": "Olá mundo!"
-    }
-  ],
+  "learnhttp": [],
   "journals": [
     {
-      "id": "16979b10-a763-11ef-aae2-89f7d375f19c",
+      "id": "a586d560-a764-11ef-9e1a-cb3548ebf922",
       "content": "",
-      "created_at": "2024-11-20 14:15:49.445290",
-      "updated_at": "2024-11-20 14:15:49.445291"
+      "created_at": "2024-11-20 14:26:58.746828",
+      "updated_at": "2024-11-20 14:26:58.746829"
     },
     {
-      "id": "27912800-a763-11ef-a852-8fef0ee9fd35",
-      "content": "",
-      "created_at": "2024-11-20 14:16:17.924279",
-      "updated_at": "2024-11-20 14:16:17.924280"
+      "id": "0d0806a0-a765-11ef-9e1a-cb3548ebf922",
+      "content": "hoje é domingo ",
+      "created_at": "2024-11-10 14:26:59.499812",
+      "updated_at": "2024-11-10 14:26:59.499812"
     }
   ]
 }
