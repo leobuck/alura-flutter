@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_webapi_first_course/helpers/async_study.dart';
+import 'package:flutter_webapi_first_course/models/journal.dart';
+import 'package:flutter_webapi_first_course/screens/add_journal_screen/add_journal_screen.dart';
 import 'package:flutter_webapi_first_course/services/journal_service.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'screens/home_screen/home_screen.dart';
@@ -29,13 +31,24 @@ class MyApp extends StatelessWidget {
             titleTextStyle: TextStyle(
               color: Colors.white,
             ),
+            actionsIconTheme: IconThemeData(
+              color: Colors.white,
+            ),
           ),
           textTheme: GoogleFonts.bitterTextTheme()),
       darkTheme: ThemeData.dark(),
       themeMode: ThemeMode.light,
-      initialRoute: "home",
+      initialRoute: "add-journal",
       routes: {
         "home": (context) => const HomeScreen(),
+        "add-journal": (context) => AddJournalScreen(
+              journal: Journal(
+                id: "",
+                content: "",
+                createdAt: DateTime.now(),
+                updatedAt: DateTime.now(),
+              ),
+            ),
       },
     );
   }
