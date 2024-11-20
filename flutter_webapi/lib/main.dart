@@ -24,31 +24,37 @@ class MyApp extends StatelessWidget {
       title: 'Simple Journal',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-          primarySwatch: Colors.grey,
-          appBarTheme: const AppBarTheme(
-            elevation: 0,
-            backgroundColor: Colors.black,
-            titleTextStyle: TextStyle(
-              color: Colors.white,
-            ),
-            actionsIconTheme: IconThemeData(
-              color: Colors.white,
-            ),
+        primarySwatch: Colors.grey,
+        appBarTheme: const AppBarTheme(
+          elevation: 0,
+          backgroundColor: Colors.black,
+          titleTextStyle: TextStyle(
+            color: Colors.white,
           ),
-          textTheme: GoogleFonts.bitterTextTheme()),
+          actionsIconTheme: IconThemeData(
+            color: Colors.white,
+          ),
+          iconTheme: IconThemeData(
+            color: Colors.white,
+          ),
+        ),
+        textTheme: GoogleFonts.bitterTextTheme(),
+      ),
       darkTheme: ThemeData.dark(),
       themeMode: ThemeMode.light,
-      initialRoute: "add-journal",
+      initialRoute: "home",
       routes: {
         "home": (context) => const HomeScreen(),
-        "add-journal": (context) => AddJournalScreen(
-              journal: Journal(
-                id: "",
-                content: "",
-                createdAt: DateTime.now(),
-                updatedAt: DateTime.now(),
-              ),
-            ),
+      },
+      onGenerateRoute: (settings) {
+        if (settings.name == "add-journal") {
+          final journal = settings.arguments as Journal;
+          return MaterialPageRoute(builder: (context) {
+            return AddJournalScreen(
+              journal: journal,
+            );
+          });
+        }
       },
     );
   }
